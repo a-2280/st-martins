@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Galipos";
+  src: url("/fonts/Galipos-Italic-btqdej.otf") format("opentype");
+  font-style: italic;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "XanhMono";
+  src: url("/fonts/XanhMono-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "XanhMono";
+  src: url("/fonts/XanhMono-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+}
+
+.galipos {
+  font-family: "Galipos", serif;
+  font-style: italic;
+}
+
+.xanh {
+  font-family: "XanhMono", monospace;
+}
+
+.xanh-italic {
+  font-family: "XanhMono", monospace;
+  font-style: italic;
+}
+
+body {
+  font-size: 16px;
+  color: rgba(22, 24, 23, 1);
+  font-family: "XanhMono", monospace;
+  background-color: rgba(245, 244, 241, 1);
+  text-transform: uppercase;
+  letter-spacing: -1%;
+  line-height: 120%;
+}
