@@ -154,47 +154,6 @@ export default function HeroGraphic({ heroRef }) {
     };
   }, [heroRef, isFinePointer, prefersReducedMotion, resetShadow, scheduleApply]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!("DeviceOrientationEvent" in window)) return;
-
-    const handleOrientation = (e) => {
-      if (prefersReducedMotion.current || isFinePointer.current) {
-        resetShadow();
-        return;
-      }
-
-      const root = heroRef?.current ?? svgHostRef.current;
-      if (!root) return;
-
-      const { beta, gamma } = e;
-      if (beta == null || gamma == null) return;
-
-      const nx = clamp(gamma / 45, -1, 1);
-      const ny = clamp(beta / 45, -1, 1);
-
-      targetRef.current = {
-        dx: clamp(-nx * maxOffset, -maxOffset, maxOffset),
-        dy: clamp(-ny * maxOffset, -maxOffset, maxOffset),
-      };
-
-      scheduleApply();
-    };
-
-    const handleOrientationEnd = () => {
-      resetShadow();
-    };
-
-    window.addEventListener("deviceorientation", handleOrientation);
-    window.addEventListener("blur", handleOrientationEnd);
-
-    return () => {
-      window.removeEventListener("deviceorientation", handleOrientation);
-      window.removeEventListener("blur", handleOrientationEnd);
-      resetShadow();
-    };
-  }, [heroRef, isFinePointer, maxOffset, prefersReducedMotion, resetShadow, scheduleApply]);
-
   return (
     <div
       ref={svgHostRef}
