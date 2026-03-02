@@ -1,18 +1,14 @@
+import RestaurantHours from "./restaurantHours";
+
 export default function Header() {
   return (
-    <div className="masthead flex space-between">
-      <div className="flex flex-col align-center">
+    <div className="masthead flex space-between m-flex-col m-align-center">
+      <div className="flex flex-col align-center m-flex-row m-gap-10 m-f14">
         <div>4223 Bryan Street</div>
         <div>Dallas, TX</div>
       </div>
-      <div>make a Reservation</div>
-      <div className="flex flex-col align-center gap-5">
-        <div className="flex flex-col align-center">
-          <div>Sun-Thu: 5-10pm</div>
-          <div>Fri & Sat: 5-11pm</div>
-        </div>
-        <div className="capitalize f12 op-4">Closed Now</div>
-      </div>
+      <div className="m-hide">make a Reservation</div>
+      <RestaurantHours />
     </div>
   );
 }
