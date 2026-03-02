@@ -15,21 +15,19 @@ function isRestaurantOpenInDallas() {
   const hour = Number(parts.find((p) => p.type === "hour")?.value ?? "0");
   const minute = Number(parts.find((p) => p.type === "minute")?.value ?? "0");
 
-  const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+  const day = now.getDay();
 
   const timeInMinutes = hour * 60 + minute;
-  const openAt = 17 * 60; // 5:00 PM
-  const closeSunThu = 22 * 60; // 10:00 PM
-  const closeFriSat = 23 * 60; // 11:00 PM
+  const openAt = 17 * 60;
+  const closeSunThu = 22 * 60;
+  const closeFriSat = 23 * 60;
 
   if (timeInMinutes < openAt) return false;
 
   if (day === 5 || day === 6) {
-    // Friday & Saturday
     return timeInMinutes < closeFriSat;
   }
 
-  // Sunday–Thursday
   return timeInMinutes < closeSunThu;
 }
 
@@ -58,4 +56,3 @@ export default function RestaurantHours() {
     </div>
   );
 }
-

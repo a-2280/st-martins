@@ -1,6 +1,3 @@
-import Header from "@/components/header";
-import "../styles/site.scss";
-
 export const metadata = {
   title: "St. Martins",
   description: "",
@@ -9,10 +6,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <Header />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
