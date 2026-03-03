@@ -1,5 +1,9 @@
-import { hero } from './hero'
+import { header } from "./_header";
+import { hero } from "./_hero";
+import { gallery } from "./_gallery";
+
+export const singletonTypes = new Set(["header", "hero", "gallery"]);
 
 export const schema = {
-  types: [hero],
-}
+  types: [header, hero, gallery],
+};

@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import HeroGraphic from "./heroGraphic";
 
-export default function Hero() {
+export default function Hero({ data }) {
   const heroRef = useRef(null);
 
   return (
@@ -13,7 +13,7 @@ export default function Hero() {
       <HeroGraphic heroRef={heroRef} />
       <div className="w-285px text-center flex flex-col align-center gap-40">
         <p className="m-show">Make a Reservation</p>
-        <p>Dallas&rsquo;s most romantic restaurant has finally returned.</p>
+        <p>{data?.statement}</p>
       </div>
     </div>
   );

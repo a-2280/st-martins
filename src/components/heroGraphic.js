@@ -21,7 +21,6 @@ function useMediaQuery(query) {
       return () => mql.removeEventListener("change", update);
     }
 
-    // Safari < 14
     mql.addListener(update);
     return () => mql.removeListener(update);
   }, [query]);
@@ -152,7 +151,13 @@ export default function HeroGraphic({ heroRef }) {
       window.removeEventListener("blur", handlePointerLeave);
       resetShadow();
     };
-  }, [heroRef, isFinePointer, prefersReducedMotion, resetShadow, scheduleApply]);
+  }, [
+    heroRef,
+    isFinePointer,
+    prefersReducedMotion,
+    resetShadow,
+    scheduleApply,
+  ]);
 
   return (
     <div

@@ -1,10 +1,20 @@
+import { sanityFetch } from "@/sanity/lib/live";
+import Header from "@/components/header";
 import Hero from "@/components/hero";
 import Spacer from "@/components/spacer";
 
-export default function Home() {
+const PAGE_QUERY = `{
+  "header": *[_type == "header"][0],
+  "hero": *[_type == "hero"][0]
+}`;
+
+export default async function Home() {
+  const { data } = await sanityFetch({ query: PAGE_QUERY });
+
   return (
     <main>
-      <Hero />
+      <Header data={data?.header} />
+      <Hero data={data?.hero} />
       <Spacer className="h-250px" />
     </main>
   );
