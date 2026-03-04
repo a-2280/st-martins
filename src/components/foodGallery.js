@@ -10,7 +10,6 @@ export default function FoodGallery({ data }) {
   return (
     <Swiper
       loop
-      grabCursor
       speed={650}
       className="food-gallery"
       onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -27,7 +26,6 @@ export default function FoodGallery({ data }) {
               <div
                 className="ratio-4-5 pos-rel"
                 onClick={() => !isActive && swiperRef.current?.slideToLoop(i)}
-                style={{ cursor: isActive ? "default" : "pointer" }}
               >
                 <Image
                   className="bg-image"

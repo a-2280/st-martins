@@ -37,10 +37,19 @@
     }
   }
 
+  .swiper-slide:not(.swiper-slide-active) > div:first-child {
+    cursor: pointer;
+  }
+
   .swiper-slide-active {
     > div:first-child {
       transform: scale(1);
       opacity: 1;
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
     }
 
     > div:last-child {
