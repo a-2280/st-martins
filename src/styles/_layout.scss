@@ -33,6 +33,16 @@
   font-style: italic;
 }
 
+.f-12 {
+  font-size: 12px;
+  letter-spacing: -1%;
+  line-height: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
 body {
   font-size: 16px;
   color: rgba(22, 24, 23, 1);
@@ -41,4 +51,6 @@ body {
   text-transform: uppercase;
   letter-spacing: -1%;
   line-height: 120%;
+  width: 100vw;
+  overflow: hidden;
 }

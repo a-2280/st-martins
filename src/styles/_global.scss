@@ -22,6 +22,10 @@
   justify-content: space-between;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .align-center {
   align-items: center;
 }
@@ -34,12 +38,35 @@
   opacity: 0.4;
 }
 
+div.bg-image,
+.bg-image {
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
+
 .bg-red {
   background-color: red;
 }
 
 .bg-blue {
   background-color: blue;
+}
+
+.ratio-4-5 {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.h-200px {
+  height: 200px;
 }
 
 .h-250px {
@@ -60,6 +87,10 @@
 
 .w-285px {
   width: 285px;
+}
+
+.w-360px {
+  width: 360px;
 }
 
 .text-center {
