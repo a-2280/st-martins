@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const gallery = defineType({
-  name: "gallery",
-  title: "Gallery",
+export const foodGallery = defineType({
+  name: "foodGallery",
+  title: "Food Gallery",
   type: "document",
   fields: [
     defineField({
@@ -39,7 +39,7 @@ export const gallery = defineType({
   ],
   preview: {
     prepare() {
-      return { title: "Gallery" };
+      return { title: "Food Gallery" };
     },
   },
 });

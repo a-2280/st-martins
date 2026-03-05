@@ -1,3 +1,11 @@
+/* Prevent Chrome/iOS from auto-linking phone numbers, addresses, etc. */
+a[href^="tel:"],
+a[href^="sms:"] {
+  text-decoration: none;
+  color: inherit;
+  pointer-events: none;
+}
+
 .spacer {
   height: 100px;
 }
@@ -6,8 +14,16 @@
   text-transform: uppercase;
 }
 
+.cursor-default {
+  cursor: default;
+}
+
 .capitalize {
   text-transform: capitalize;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }
 
 .flex {
@@ -30,6 +46,10 @@
   align-items: center;
 }
 
+.align-end {
+  align-items: flex-end;
+}
+
 .f12 {
   font-size: 12px;
 }
@@ -48,21 +68,34 @@ div.bg-image,
   object-fit: cover;
 }
 
-.bg-red {
-  background-color: red;
-}
-
-.bg-blue {
-  background-color: blue;
-}
 
 .ratio-4-5 {
   width: 100%;
   aspect-ratio: 4 / 5;
 }
 
+.ratio-1-1 {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.ratio-183-197 {
+  width: 100%;
+  aspect-ratio: 183 / 197;
+}
+
+.m-ratio-5-3 {
+  @media (max-width: 768px) {
+    aspect-ratio: 5 / 3;
+  }
+}
+
 .pos-rel {
   position: relative;
+}
+
+.h-100 {
+  height: 100%;
 }
 
 .h-200px {
@@ -73,6 +106,10 @@ div.bg-image,
   height: 250px;
 }
 
+.h-300px {
+  height: 300px;
+}
+
 .h-100dvh {
   height: 100dvh;
 }
@@ -81,8 +118,33 @@ div.bg-image,
   gap: 5px;
 }
 
+.gap-20 {
+  gap: 20px;
+}
+
 .gap-40 {
   gap: 40px;
+}
+
+.gap-60 {
+  gap: 60px;
+}
+
+.gap-160 {
+  gap: 160px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+
+.w-180px {
+  width: 180px;
+}
+
+.w-200px {
+  width: 200px;
 }
 
 .w-285px {
@@ -123,6 +185,49 @@ div.bg-image,
   }
 }
 
+.m-order-1 {
+  @media (max-width: 768px) {
+    order: 1;
+  }
+}
+
+.m-order-2 {
+  @media (max-width: 768px) {
+    order: 2;
+  }
+}
+
+.m-order-3 {
+  @media (max-width: 768px) {
+    order: 3;
+  }
+}
+
+.m-h-150px {
+  @media (max-width: 768px) {
+    height: 150px;
+  }
+}
+
+.m-mb60 {
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+}
+
+.m-mx-auto {
+  @media (max-width: 768px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.m-mt50 {
+  @media (max-width: 768px) {
+    margin-top: 50px;
+  }
+}
+
 .m-align-center {
   @media (max-width: 768px) {
     align-items: center;
@@ -138,6 +243,12 @@ div.bg-image,
 .m-gap-10 {
   @media (max-width: 768px) {
     gap: 10px;
+  }
+}
+
+.m-gap-60 {
+  @media (max-width: 768px) {
+    gap: 60px;
   }
 }
 

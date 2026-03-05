@@ -31,7 +31,7 @@ function useMediaQuery(query) {
 export default function HeroGraphic({ heroRef }) {
   const svgHostRef = useRef(null);
   const [svg, setSvg] = useState("");
-  const offsetsRef = useRef([]);
+  const origRef = useRef([]);
   const rafRef = useRef(0);
   const targetRef = useRef({ dx: 0, dy: 0 });
 
@@ -48,10 +48,13 @@ export default function HeroGraphic({ heroRef }) {
     if (!rafRef.current) {
       rafRef.current = requestAnimationFrame(() => {
         rafRef.current = 0;
-        for (const { el, dx0, dy0 } of offsetsRef.current) {
-          el.setAttribute("dx", String(dx0));
-          el.setAttribute("dy", String(dy0));
-        }
+        const svgEl = svgHostRef.current?.querySelector("svg");
+        Array.from(svgEl?.querySelectorAll("feOffset") ?? []).forEach(
+          (el, i) => {
+            el.setAttribute("dx", String(origRef.current[i]?.dx0 ?? 0));
+            el.setAttribute("dy", String(origRef.current[i]?.dy0 ?? 0));
+          },
+        );
       });
     }
   }, []);
@@ -82,12 +85,11 @@ export default function HeroGraphic({ heroRef }) {
       filterEl.setAttribute("height", String(h + filterPadding * 2));
     }
 
-    offsetsRef.current = Array.from(svgEl.querySelectorAll("feOffset")).map(
-      (el) => {
-        const dx0 = Number.parseFloat(el.getAttribute("dx") ?? "0") || 0;
-        const dy0 = Number.parseFloat(el.getAttribute("dy") ?? "0") || 0;
-        return { el, dx0, dy0 };
-      },
+    origRef.current = Array.from(svgEl.querySelectorAll("feOffset")).map(
+      (el) => ({
+        dx0: Number.parseFloat(el.getAttribute("dx") ?? "0") || 0,
+        dy0: Number.parseFloat(el.getAttribute("dy") ?? "0") || 0,
+      }),
     );
 
     resetShadow();
@@ -103,12 +105,35 @@ export default function HeroGraphic({ heroRef }) {
       rafRef.current = 0;
 
       const { dx, dy } = targetRef.current;
-      for (const { el, dx0, dy0 } of offsetsRef.current) {
-        el.setAttribute("dx", (dx0 + dx).toFixed(2));
-        el.setAttribute("dy", (dy0 + dy).toFixed(2));
-      }
+      const svgEl = svgHostRef.current?.querySelector("svg");
+      Array.from(svgEl?.querySelectorAll("feOffset") ?? []).forEach((el, i) => {
+        el.setAttribute(
+          "dx",
+          ((origRef.current[i]?.dx0 ?? 0) + dx).toFixed(2),
+        );
+        el.setAttribute(
+          "dy",
+          ((origRef.current[i]?.dy0 ?? 0) + dy).toFixed(2),
+        );
+      });
     });
   }, []);
+
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") {
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = 0;
+        }
+        resetShadow();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibility);
+  }, [resetShadow]);
 
   useEffect(() => {
     const handlePointerMove = (e) => {

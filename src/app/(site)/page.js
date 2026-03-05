@@ -1,25 +1,46 @@
 import { sanityFetch } from "@/sanity/lib/live";
+import { getMenuItems } from "@/lib/sheets";
 import Header from "@/components/header";
 import Hero from "@/components/hero";
 import Spacer from "@/components/spacer";
 import FoodGallery from "@/components/foodGallery";
+import MenuTabs from "@/components/menuTabs";
+import MenuFooter from "@/components/menuFooter";
+import ImageGallery from "@/components/imageGallery";
+import Footer from "@/components/footer";
 
 const PAGE_QUERY = `{
   "header": *[_type == "header"][0],
   "hero": *[_type == "hero"][0],
-  "gallery": *[_type == "gallery"][0]
+  "foodGallery": *[_type == "foodGallery"][0],
+  "imageGallery": *[_type == "gallery"][0],
+  "menus": *[_type == "menus"][0],
+  "footer": *[_type == "footer"][0]
 }`;
 
+export const revalidate = 300; // revalidate every 5 minutes
+
 export default async function Home() {
-  const { data } = await sanityFetch({ query: PAGE_QUERY });
+  const [{ data }, dinnerItems, wineItems, cocktailItems] = await Promise.all([
+    sanityFetch({ query: PAGE_QUERY }),
+    getMenuItems("Dinner Menu"),
+    getMenuItems("Wine List"),
+    getMenuItems("Cocktails & Spirits"),
+  ]);
 
   return (
     <main>
       <Header data={data?.header} />
       <Hero data={data?.hero} />
       <Spacer className="h-250px" />
-      <FoodGallery data={data?.gallery} />
-      <Spacer className="h-200px" />
+      <FoodGallery data={data?.foodGallery} />
+      <Spacer className="h-250px" />
+      <MenuTabs data={data?.menus} dinnerItems={dinnerItems} wineItems={wineItems} cocktailItems={cocktailItems} />
+      <MenuFooter warning={data?.menus?.warning} />
+      <Spacer className="h-300px" />
+      <ImageGallery data={data?.imageGallery} />
+      <Spacer className="h-300px m-h-150px" />
+      <Footer data={data?.footer} />
     </main>
   );
 }
