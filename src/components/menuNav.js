@@ -14,7 +14,7 @@ function MenuImage({ image, activeTitle }) {
   return (
     <div className="ratio-1-1 pos-rel w-200px mb-160 mx-auto m-mb-60">
       <Image
-        className="bg-image"
+        className="bg-image contain"
         src={urlFor(image).url()}
         alt={activeTitle ?? ""}
         width={193}

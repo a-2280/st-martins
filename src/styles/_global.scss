@@ -192,6 +192,10 @@ div.bg-image,
   white-space: nowrap;
 }
 
+.contain {
+  object-fit: contain;
+}
+
 .m-hide {
   @media (max-width: 768px) {
     display: none;
