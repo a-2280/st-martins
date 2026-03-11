@@ -1,3 +1,16 @@
 .hero-logo {
   max-width: calc(100vw - 35px);
+
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: calc(100vw - 50px);
+  }
+}
+
+.hero {
+  @media (max-width: 768px) {
+    position: relative;
+  }
 }

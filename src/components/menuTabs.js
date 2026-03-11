@@ -1,5 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useLenis } from "lenis/react";
+import gsap from "gsap";
 import MenuNav from "./menuNav";
 import MenuSection from "./menuSection";
 import Spacer from "./spacer";
@@ -7,10 +9,22 @@ import { initSal } from "@/utils/sal";
 
 export default function MenuTabs({ data, dinnerItems, wineItems, cocktailItems }) {
   const [activeId, setActiveId] = useState("dinner-menu");
+  const menuNavRef = useRef(null);
+  const lenis = useLenis();
 
   useEffect(() => {
     initSal()
   }, [activeId]);
+
+  const handleSelect = useCallback((id) => {
+    setActiveId(id);
+    if (lenis && menuNavRef.current) {
+      lenis.scrollTo(menuNavRef.current, {
+        duration: 1.2,
+        easing: gsap.parseEase("power3.inOut"),
+      });
+    }
+  }, [lenis]);
 
   const sections = [
     { id: "dinner-menu", title: data?.dinner?.name ?? "Dinner Menu", items: dinnerItems, image: data?.dinner?.image },
@@ -22,7 +36,8 @@ export default function MenuTabs({ data, dinnerItems, wineItems, cocktailItems }
 
   return (
     <>
-      <MenuNav sections={sections} activeId={activeId} onSelect={setActiveId} image={active?.image} activeTitle={active?.title} />
+      <div className="h-125px" ref={menuNavRef} />
+      <MenuNav sections={sections} activeId={activeId} onSelect={handleSelect} image={active?.image} activeTitle={active?.title} />
       {active && <MenuSection id={active.id} items={active.items} />}
     </>
   );

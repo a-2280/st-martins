@@ -3,16 +3,16 @@ import { urlFor } from "@/sanity/lib/image";
 
 export default function MenuNav({ sections, activeId, onSelect, image, activeTitle }) {
   return (
-    <div className="flex flex-col align-center gap-160 m-gap-60">
+    <>
       {image && <MenuImage image={image} activeTitle={activeTitle} />}
       <MenuItems sections={sections} activeId={activeId} onSelect={onSelect} />
-    </div>
+    </>
   );
 }
 
 function MenuImage({ image, activeTitle }) {
   return (
-    <div className="ratio-1-1 pos-rel w-200px">
+    <div className="ratio-1-1 pos-rel w-200px mb-160 mx-auto m-mb-60">
       <Image
         className="bg-image"
         src={urlFor(image).url()}
@@ -26,7 +26,7 @@ function MenuImage({ image, activeTitle }) {
 
 function MenuItems({ sections, activeId, onSelect }) {
   return (
-    <div className="w-100 flex justify-center capitalize flex gap-5 m-flex-col m-align-center m-gap-10">
+    <div className="menu-nav w-100 flex justify-center capitalize flex gap-5 m-flex-col m-align-center m-gap-10">
       {sections.map((s, i) => (
         <span key={s.id} className="flex gap-5">
           {i > 0 && <span className="cursor-default m-hide">/</span>}

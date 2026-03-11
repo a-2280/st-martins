@@ -23,9 +23,30 @@ export const footer = defineType({
         defineField({ name: "link", type: "string" }),
       ],
     }),
-    defineField({ name: "phone", type: "string" }),
-    defineField({ name: "address", type: "string" }),
-    defineField({ name: "handle", type: "string" }),
+    defineField({
+      name: "phone",
+      type: "object",
+      fields: [
+        defineField({ name: "text", type: "string" }),
+        defineField({ name: "link", type: "string" }),
+      ],
+    }),
+    defineField({
+      name: "address",
+      type: "object",
+      fields: [
+        defineField({ name: "text", type: "string" }),
+        defineField({ name: "link", type: "string" }),
+      ],
+    }),
+    defineField({
+      name: "handle",
+      type: "object",
+      fields: [
+        defineField({ name: "text", type: "string" }),
+        defineField({ name: "link", type: "string" }),
+      ],
+    }),
     defineField({ name: "tagline", type: "string" }),
     defineField({ name: "image", type: "image" }),
   ],

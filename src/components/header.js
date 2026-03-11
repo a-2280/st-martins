@@ -7,7 +7,7 @@ export default function Header({ data }) {
         <div>{data?.address?.street}</div>
         <div>{data?.address?.cityState}</div>
       </div>
-      <a className="button-primary m-hide" href={data?.reservation?.link}>{data?.reservation?.button}</a>
+      <div />
       <RestaurantHours hours={data?.hours} />
     </div>
   );

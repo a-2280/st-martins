@@ -1,78 +1,39 @@
-.food-gallery {
-  height: 450px;
-  overflow: visible;
-  user-select: none;
+.food-gallery .swiper {
+  background-color: red;
+}
 
-  .swiper-wrapper {
-    overflow: visible;
+.food-gallery .swiper-wrapper {
+  align-items: center;
+}
+
+.food-gallery .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 350px;
+  transform: scale(0.8);
+  cursor: pointer;
+  transform-origin: center center;
+  transition: transform 0.65s ease;
+
+  .f-12 {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.65s ease, visibility 0.65s ease;
+  }
+}
+
+.food-gallery .swiper-slide-active {
+  transform: scale(1);
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
   }
 
-  .swiper-slide {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > div:first-child {
-      width: 360px;
-
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-      transform-origin: center center;
-      transition:
-        transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity 0.65s ease;
-    }
-
-    > div:last-child {
-      position: absolute;
-      top: calc(100% + 30px);
-      left: 0;
-      width: 100%;
-      text-align: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-  }
-
-  .swiper-slide:not(.swiper-slide-active) > div:first-child {
-    cursor: pointer;
-  }
-
-  .swiper-slide-active {
-    > div:first-child {
-      transform: scale(1);
-      opacity: 1;
-      cursor: grab;
-
-      &:active {
-        cursor: grabbing;
-      }
-    }
-
-    > div:last-child {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
-  .swiper-slide:not(.swiper-slide-active) {
-    align-self: center;
-    height: auto;
-
-    > div:first-child {
-      transform: scale(0.778);
-    }
-  }
-
-  @media (max-width: 768px) {
-    height: auto;
-
-    .swiper-slide:not(.swiper-slide-active) > div:first-child {
-      transform: scale(1);
-      opacity: 1;
-    }
+  .f-12 {
+    visibility: visible;
+    opacity: 1;
   }
 }

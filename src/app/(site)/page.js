@@ -31,10 +31,10 @@ export default async function Home() {
   return (
     <main>
       <Header data={data?.header} />
-      <Hero data={data?.hero} />
+      <Hero data={data?.hero} headerData={data?.header} />
       <Spacer className="h-250px" />
       <FoodGallery data={data?.foodGallery} />
-      <Spacer className="h-250px" />
+      <Spacer className="h-125px" />
       <MenuTabs data={data?.menus} dinnerItems={dinnerItems} wineItems={wineItems} cocktailItems={cocktailItems} />
       <MenuFooter warning={data?.menus?.warning} />
       <Spacer className="h-300px" />

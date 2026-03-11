@@ -1,6 +1,6 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectFade } from "swiper/modules";
+import { Pagination, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css/effect-fade";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
@@ -14,7 +14,8 @@ export default function ImageGallery({ data }) {
       speed={650}
       effect="fade"
       fadeEffect={{ crossFade: true }}
-      modules={[Pagination, EffectFade]}
+      autoplay={{ delay: 4000, disableOnInteraction: false }}
+      modules={[Pagination, EffectFade, Autoplay]}
       pagination={{ clickable: true }}
       className="image-gallery"
     >

@@ -6,6 +6,19 @@ a[href^="sms:"] {
   pointer-events: none;
 }
 
+.bg-red {
+  background-color: red;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .spacer {
   height: 100px;
 }
@@ -98,6 +111,10 @@ div.bg-image,
   height: 100%;
 }
 
+.h-125px {
+  height: 125px;
+}
+
 .h-200px {
   height: 200px;
 }
@@ -108,6 +125,10 @@ div.bg-image,
 
 .h-300px {
   height: 300px;
+}
+
+.h-500px {
+  height: 500px;
 }
 
 .h-100dvh {
@@ -209,7 +230,17 @@ div.bg-image,
   }
 }
 
+.mb-160 {
+  margin-bottom: 160px;
+}
+
 .m-mb60 {
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+}
+
+.m-mb-60 {
   @media (max-width: 768px) {
     margin-bottom: 60px;
   }
@@ -256,5 +287,11 @@ div.bg-image,
   display: none;
   @media (max-width: 768px) {
     display: inherit;
+  }
+}
+
+.m-mt-auto {
+  @media (max-width: 768px) {
+    margin-top: auto;
   }
 }
