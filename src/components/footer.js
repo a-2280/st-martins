@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import Link from "next/link";
-
 export default function Footer({ data }) {
   return (
     <footer className="footer flex space-between m-flex-col">
@@ -22,10 +20,10 @@ export default function Footer({ data }) {
       <div className="flex flex-col space-between capitalize m-order-3 m-mt50">
         <div className="flex flex-col align-center gap-20">
           <div className="flex flex-col align-center">
-            <Link href={data?.phone?.link ?? ""}>{data?.phone?.text}</Link>
-            <Link href={data?.address?.link ?? ""} target="_blank" rel="noopener noreferrer">{data?.address?.text}</Link>
+            <a href={data?.phone?.link ?? ""}>{data?.phone?.text}</a>
+            <a href={data?.address?.link ?? ""} target="_blank" rel="noopener noreferrer">{data?.address?.text}</a>
           </div>
-          <Link className="lowercase" href={data?.handle?.link ?? ""} target="_blank" rel="noopener noreferrer">{data?.handle?.text}</Link>
+          <a className="lowercase" href={data?.handle?.link ?? ""} target="_blank" rel="noopener noreferrer">{data?.handle?.text}</a>
         </div>
         <p className="tagline">{data?.tagline}</p>
       </div>

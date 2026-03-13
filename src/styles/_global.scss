@@ -3,7 +3,6 @@ a[href^="tel:"],
 a[href^="sms:"] {
   text-decoration: none;
   color: inherit;
-  pointer-events: none;
 }
 
 .bg-red {
